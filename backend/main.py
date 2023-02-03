@@ -20,20 +20,25 @@ locations_collection = db.locations
 @app.route("/")
 def hello_world():
     print(location)
-    locations_collection.insert_one(location)
+    # locations_collection.insert_one(location)
     return jsonify(location)
 
 
 @app.route('/locations', methods=['GET'])
 def get_data():
-    location = [
-        {'name': "maira home",
-         'lat': 32.08818844604488,
-         'lon': 34.83330233555725
-         },
-        {'name': "ido home",
-         'lat': 32.8191218,
-         'lon': 34.9983856
-         }
-    ]
-    return jsonify(location)
+    cursor = locations_collection.find({}, {'_id': 0})
+
+    locations = [x for x in cursor]
+    print(locations)
+
+    # location = [
+    #     {'name': "maira home",
+    #      'lat': 32.08818844604488,
+    #      'lon': 34.83330233555725
+    #      },
+    #     {'name': "ido home",
+    #      'lat': 32.8191218,
+    #      'lon': 34.9983856
+    #      }
+    # ]
+    return jsonify(locations)

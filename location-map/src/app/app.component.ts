@@ -3,6 +3,7 @@ import {HttpParams} from "@angular/common/http";
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs';
 
 
 
@@ -16,12 +17,13 @@ import { Observable } from 'rxjs/internal/Observable';
   <app-map [locations] ="locations"></app-map>`
 })
 export class AppComponent implements OnInit {
-  locations: any;
+  locations: Subject<any> = new Subject();
 
   constructor (private dataService: DataService)
 {}
 
 sendDataByObservable(data: any) {
+  console.log("sending data", data)
   this.locations.next(data)
 }
 

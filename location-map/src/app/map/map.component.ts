@@ -1,9 +1,6 @@
 import { Input, OnInit, Component } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import * as L from 'leaflet';
-import { DataService } from '../data.service';
-
-
 
 @Component({
   selector: 'app-map',
@@ -23,39 +20,11 @@ export class MapComponent implements OnInit {
     return this._locations
   }
 
-  constructor (private dataService: DataService)
-  {
-    // this.locations = []
-  }
+  eventsSubscription: Subscription | undefined;
+
+  constructor ()  {  }
 
   // atractions: Array<{ name: string, lat: number, lon : number}> = [];
-
-  // updateAttractions(newAtractions: Array<{ name: string, lat: number, lon : number}>){
-  //   this.atractions = newAtractions
-  //   console.log("newAtt", newAtractions)
-  // }
-
-  // ngOnChanges() {
-  //   this.locations.subscribe({
-
-  //     // deal with asynchronous Observable result
-  //     next(attractions: { name: string; lat: number; lon: number; }[]) {
-  //       console.log("subcsribed!")
-
-  //       console.log(attractions)
-  //       if (attractions === undefined || this.map === undefined) {
-  //         console.log("exit")
-  //         return
-  //       }
-  //       for (var i = 0; i < attractions.length; i++) {
-  //         let marker = L.marker([attractions[i].lat, attractions[i].lon])
-  //           .bindPopup(attractions[i].name)
-  //           .addTo(this.map);
-  //       }
-
-  // }})
-
-  // }
 
   ngOnInit() {
     this.map = L.map("map").setView([46.879966, -121.726909], 7);
@@ -65,13 +34,19 @@ export class MapComponent implements OnInit {
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
-    this.locations.subscribe()
+    this.eventsSubscription = this._locations.subscribe((data: any) => {
+      console.log("event recieved", data)
+      this.locations = data
 
-    for (var i = 0; i < this._locations.length; i++) {
-      let marker = L.marker([this._locations[i].lat, this._locations[i].lon])
-        .bindPopup(this._locations[i].name)
-        .addTo(this.map);
-    }
+      for (var i = 0; i < this._locations.length; i++) {
+        let marker = L.marker([this._locations[i].lat, this._locations[i].lon])
+          .bindPopup(this._locations[i].name)
+          .addTo(this.map);
+      }
+      console.log("added markers to the map")
+    })
+
+
 
   }
 }
