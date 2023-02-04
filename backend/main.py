@@ -1,9 +1,9 @@
 from flask import Flask
 from pymongo import MongoClient
 from flask_cors import CORS
-from flask import jsonify
+from flask import jsonify, request
 import requests
-
+import json
 app = Flask(__name__)
 CORS(app)
 
@@ -29,13 +29,33 @@ def get_data():
             eachLat, eachLon)
         response = requests.get(weatherAPI)
         data = response.json()
-        temperature = data['main']['temp']
-        obj["temp"] = temperature
+        try:
+            temperature = data['main']['temp']
+            obj["temp"] = temperature
+        except Exception as e:
+            print("can't get weather for", data)
         updatedData.append(obj)
     return updatedData
-    print(updatedData, 'updatedData OUTSIDE FUNCTION')
 
-# stuff_in_string = "https://api.openweathermap.org/data/2.5/weather?lat={}&lon=34.8279716&appid=38cb4c5f06b6256a8dc99b7c4f5976fd".format(eachLon)
+# do a post request in the FE with the values hard coded, then, real values from input
+# call this endpoint in the be
+
+
+@app.route('/post-locations', methods=['POST'])
+def insert_attractions():
+    print(request)
+    print(request.data)
+    attractionsData = request.data
+    attractionsJson = json.loads(attractionsData)
+    # dict_example = {}
+    # dict_example['name'] = request.data
+    # dict_example['lon'] = lon
+    # dict_example['lat'] = lat
+
+    locations_collection.insert_one(attractionsJson)
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+
+# insert_attractions('test2', 80.3, 120.5)
 
 
 # todo get the weather from the real location added on the data
