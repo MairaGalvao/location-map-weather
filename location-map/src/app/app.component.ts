@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs';
 import { NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-
+// import {MatButton} from '@angular/material';
 
 
 @Component({
@@ -21,44 +21,24 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 <!-- <app-attractions>  </app-attractions> -->
 
-<div>
-  <div>
-  <h1>attractions form!</h1>
-  </div>
-
-  <form #attractionsForm="ngForm" (ngSubmit)="onAttractionCreate(attractionsForm.value)">
-  <label >Name</label>
-  <input id="name" type="text" name="name" ngModel (keyup)="onKeyName($event)">
-
-  <label>Longitude</label>
-  <input type="text" name="lon" ngModel (keyup)="onKeyLongitude($event)">
-
-  <label>Latitude</label>
-  <input type="text" name="lat" ngModel (keyup)="onKeyLatitude($event)">
+<div class="container">
+<form class="form" #attractionsForm="ngForm" (ngSubmit)="onAttractionCreate(attractionsForm.value)">
 
 
-  <input type="submit" value="add attraction">
+            <input id="name" class="input" placeholder="name" type="text" name="name" ngModel (keyup)="onKeyName($event)">
 
-  </form>
-  </div>
 
-  <div>
-  <h3>All attractions</h3>
-  <table id="users">
-  <tr>
-    Name: <th>{{NameUser}}</th>
 
-  </tr>
-  <tr>
-    Longitude: <th>{{longitude}}</th>
+ <input type="text"  placeholder="Latitude" class="input" name="lon" ngModel (keyup)="onKeyLongitude($event)">
 
-  </tr>
-  <tr>
-    Latitude: <th>{{latitude}}</th>
 
-  </tr>
-  </table>
-  </div>
+ <input type="text" class="input" name="lat" ngModel (keyup)="onKeyLatitude($event)">
+
+            <input type="submit" class="add" value="Add Task" />
+            </form>
+        <div class="tasks"></div>
+        <div class="delete-all">Delete all</div>
+        </div>
 
   `
 })
@@ -69,6 +49,7 @@ export class AppComponent implements OnInit {
   longitude = '';
   latitude = '';
 
+  checked = false;
 
   constructor (private dataService: DataService,
     public http: HttpClient, private _sanitizer: DomSanitizer
