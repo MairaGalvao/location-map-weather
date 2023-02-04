@@ -5,17 +5,19 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { MapComponent } from './map/map.component';
 import { TodoComponent } from './todo/todo.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    TodoComponent
+
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

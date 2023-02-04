@@ -12,15 +12,19 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
 
   public sendGetRequest(): Observable<any>{
+    console.log("getting locations")
     const res = this.httpClient.get(`${this.REST_API_SERVER}/locations`);
     return res
 
   }
 
-  public sendPostRequest(location:any): Observable<any> {
+
+
+
+  public sendPostRequest(location:any): any {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(location);
     console.log(body)
-    return this.httpClient.post(this.REST_API_SERVER + 'people', body,{'headers':headers})
+    this.httpClient.post(this.REST_API_SERVER + 'people', body,{'headers':headers})
   }
 }
