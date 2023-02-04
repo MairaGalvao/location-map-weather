@@ -2,7 +2,7 @@ from flask import Flask
 from pymongo import MongoClient
 from flask_cors import CORS
 from flask import jsonify
-
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -13,32 +13,38 @@ client = MongoClient(
 db = client.gettingStarted
 locations_collection = db.locations
 
-
-# location is each row that I am insering and locations_collection is my ''table''
-
-
-@app.route("/")
-def hello_world():
-    print(location)
-    # locations_collection.insert_one(location)
-    return jsonify(location)
+# print(locations_collection, 'my location collection')
+weatherAPI = 'https://api.openweathermap.org/data/2.5/weather?lat=32.2025693&lon=34.8279716&appid=38cb4c5f06b6256a8dc99b7c4f5976fd'
 
 
 @app.route('/locations', methods=['GET'])
 def get_data():
     cursor = locations_collection.find({}, {'_id': 0})
+    weatherAPI = 'https://api.openweathermap.org/data/2.5/weather?lat=32.2025693&lon=34.8279716&appid=38cb4c5f06b6256a8dc99b7c4f5976fd'
+    updatedData = []
+    for obj in cursor:
+        eachLon = obj['lon']
+        eachLat = obj['lat']
+        weatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid=38cb4c5f06b6256a8dc99b7c4f5976fd".format(
+            eachLat, eachLon)
+        response = requests.get(weatherAPI)
+        data = response.json()
+        temperature = data['main']['temp']
+        obj["temp"] = temperature
+        updatedData.append(obj)
+    return updatedData
+    print(updatedData, 'updatedData OUTSIDE FUNCTION')
 
-    locations = [x for x in cursor]
-    print(locations)
+# stuff_in_string = "https://api.openweathermap.org/data/2.5/weather?lat={}&lon=34.8279716&appid=38cb4c5f06b6256a8dc99b7c4f5976fd".format(eachLon)
 
-    # location = [
-    #     {'name': "maira home",
-    #      'lat': 32.08818844604488,
-    #      'lon': 34.83330233555725
-    #      },
-    #     {'name': "ido home",
-    #      'lat': 32.8191218,
-    #      'lon': 34.9983856
-    #      }
-    # ]
-    return jsonify(locations)
+
+# todo get the weather from the real location added on the data
+
+#   response = requests.get(weatherAPI)
+#    # print(response, 'my data response from weather')
+#    if response.status_code == 200:
+#         data = response.json()
+#         temperature = data['main']['temp']
+#         print(temperature, 'my temperature')
+
+#     return jsonify(locations)

@@ -40,7 +40,7 @@ export class MapComponent implements OnInit {
 
       for (var i = 0; i < this._locations.length; i++) {
         let marker = L.marker([this._locations[i].lat, this._locations[i].lon])
-          .bindPopup(this._locations[i].name)
+          .bindPopup(this._locations[i].name + '</br>' + this._locations[i].temp)
           .addTo(this.map);
       }
       console.log("added markers to the map")
