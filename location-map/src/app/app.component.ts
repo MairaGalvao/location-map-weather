@@ -27,14 +27,15 @@ import { DomSanitizer } from '@angular/platform-browser';
   </div>
 
   <form #attractionsForm="ngForm" (ngSubmit)="onAttractionCreate(attractionsForm.value)">
-  <label>Name</label>
-  <input type="text" name="name" ngModel>
+  <label >Name</label>
+  <input id="name" type="text" name="name" ngModel (keyup)="onKeyName($event)">
 
-  <label>Desc</label>
-  <input type="text" name="lon" ngModel>
+  <label>Longitude</label>
+  <input type="text" name="lon" ngModel (keyup)="onKeyLongitude($event)">
 
-  <label>Price</label>
-  <input type="text" name="lat" ngModel>
+  <label>Latitude</label>
+  <input type="text" name="lat" ngModel (keyup)="onKeyLatitude($event)">
+
 
   <input type="submit" value="add attraction">
 
@@ -43,23 +44,43 @@ import { DomSanitizer } from '@angular/platform-browser';
 
   <div>
   <h3>All attractions</h3>
-  <table id="products">
+  <table id="users">
   <tr>
-  <th>Name</th>
-  <th>Loc..</th>
+    Name: <th>{{NameUser}}</th>
+
+  </tr>
+  <tr>
+    Longitude: <th>{{longitude}}</th>
+
+  </tr>
+  <tr>
+    Latitude: <th>{{latitude}}</th>
+
   </tr>
   </table>
   </div>
 
   `
 })
+
 export class AppComponent implements OnInit {
   locations: Subject<any> = new Subject();
+  NameUser = '';
+  longitude = '';
+  latitude = '';
+
 
   constructor (private dataService: DataService,
     public http: HttpClient, private _sanitizer: DomSanitizer
   )
+
 {}
+
+
+
+
+
+
 
 sendDataByObservable(data: any) {
   console.log("sending data", data)
@@ -85,6 +106,21 @@ ngOnInit() {
   }
 
 
+  onKeyName(event: any) { // without type info
+    this.NameUser += event.target.value ;
+  }
+
+  onKeyLongitude(event: any) { // without type info
+    this.longitude += event.target.value ;
+  }
+
+  onKeyLatitude(event: any) { // without type info
+    this.latitude += event.target.value ;
+  }
+
 }
+
+
+
 
 
