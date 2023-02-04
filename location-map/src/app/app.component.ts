@@ -25,22 +25,46 @@ import { DomSanitizer } from '@angular/platform-browser';
 <form class="form" #attractionsForm="ngForm" (ngSubmit)="onAttractionCreate(attractionsForm.value)">
 
 
-            <input id="name" class="input" placeholder="name" type="text" name="name" ngModel (keyup)="onKeyName($event)">
+            <input id="name" class="input" placeholder="name" type="text" name="name" ngModel (keyup.enter)="onKeyName($event)">
 
 
 
- <input type="text"  placeholder="Latitude" class="input" name="lon" ngModel (keyup)="onKeyLongitude($event)">
+ <input type="text"  placeholder="Longitude" class="input" name="lon" ngModel (keyup.enter)="onKeyLongitude($event)">
 
 
- <input type="text" class="input" name="lat" ngModel (keyup)="onKeyLatitude($event)">
+ <input type="text" class="input" placeholder="Latitude" name="lat" ngModel (keyup.enter)="onKeyLatitude($event)">
 
-            <input type="submit" class="add" value="Add Task" />
+            <input type="submit" class="add" value="Add Attraction" />
             </form>
-        <div class="tasks"></div>
-        <div class="delete-all">Delete all</div>
-        </div>
+        <div class="tasks">
+        <h3>All attractions</h3>
+ <div id="users">
+ <div>
 
-  `
+
+   Name: <div id='eachAttraction'>
+    <h6>{{NameUser}}</h6>
+   <div class="delete-all">Delete</div>
+   </div>
+</div>
+Longitute: <div id='eachAttraction'>
+    <h6>{{longitude}}</h6>
+   <div class="delete-all">Delete</div>
+   </div>
+</div>
+
+
+Latitude: <div id='eachAttraction'>
+    <h6>{{latitude}}</h6>
+   <div class="delete-all">Delete</div>
+   </div>
+</div>
+
+
+</div>
+
+
+ `
 })
 
 export class AppComponent implements OnInit {

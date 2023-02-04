@@ -2,8 +2,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 .container {
-  width: 700px;
+  width: 800px;
   margin: 20px auto;
+  height: 1000px;
 }
 .form {
   background-color: #eee;
@@ -67,13 +68,13 @@ body {
   font-size: 10px;
   background-color: red;
   color: white;
-  padding: 2px 6px;
+
   border-radius: 4px;
   cursor: pointer;
 }
 .delete-all {
-  width: calc(100% - 25px);
-  margin: auto;
+
+
   padding: 12px;
   text-align: center;
   font-size: 14px;
@@ -82,4 +83,52 @@ body {
   margin-top: 20px;
   cursor: pointer;
   border-radius: 4px;
+}
+
+
+
+
+body {
+  margin: 32px;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 1px solid #bdbdbd;
+  height: 48px;
+  padding: 0 24px 0 16px;
+  letter-spacing: 0.25px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+.btn:focus {
+  outline: none;
+}
+.btn .mdi {
+  margin-right: 8px;
+}
+.btn-delete {
+  font-size: 16px;
+  color: red;
+}
+.btn-delete > .mdi-delete-empty {
+  display: none;
+}
+.btn-delete:hover {
+  background-color: #fff5f5;
+}
+.btn-delete:hover > .mdi-delete-empty {
+  display: block;
+}
+.btn-delete:hover > .mdi-delete {
+  display: none;
+}
+.btn-delete:focus {
+  box-shadow: 0 0 0 4px #fcc;
+}
+#eachAttraction{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
