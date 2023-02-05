@@ -10,6 +10,9 @@ body {
 
   height: 1000px;
 }
+#delete {
+  cursor: pointer;
+}
 .form {
   background-color: #eee;
   border-radius: 6px;
@@ -42,8 +45,10 @@ body {
   background-color: #ccd6a6;
   margin-top: 20px;
   border-radius: 6px;
+  margin-bottom: 20px;
   padding: 20px;
 }
+
 .tasks .task {
   background-color: white;
   padding: 10px;
@@ -143,7 +148,6 @@ body {
 #customers td,
 #customers th {
   border: 1px solid #ddd;
-  padding: 6px;
 }
 
 #customers tr:nth-child(even) {
@@ -195,6 +199,7 @@ body {
     margin-top: 20px;
     border-radius: 6px;
     padding: 10px;
+    margin-bottom: 20px;
   }
   .add {
     margin-top: 10px;

@@ -65,7 +65,12 @@ import { DomSanitizer } from '@angular/platform-browser';
             <td>{{ obj.attractionUser }}</td>
             <td>{{ obj.lon }}</td>
             <td>{{ obj.lat }}</td>
-            <td><button>Delete</button></td>
+            <td>
+              <button id='delete' (click)="deleteAttraction(eachAttraction)">
+                <i class="fas fa-trash-alt delete">Delete</i>
+              </button>
+            </td>
+            <!-- <td><button class="btn btn-success">Delete</button></td> -->
           </tr>
         </table>
       </div>
@@ -82,6 +87,7 @@ export class AppComponent implements OnInit {
   latitude = '';
 
   checked = false;
+  eachAttraction: any;
 
   constructor(
     private dataService: DataService,
@@ -107,7 +113,10 @@ export class AppComponent implements OnInit {
       this.locationData = data;
     });
   }
-
+  //functionaly WIP deleting an attraction
+  deleteAttraction(eachAttraction: any) {
+    console.log(eachAttraction, ',my attraction to be deleted...');
+  }
   onKeyName(event: any) {
     this.attractionUser += event.target.value;
   }
