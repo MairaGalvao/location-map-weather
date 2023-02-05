@@ -56,7 +56,7 @@ export class MapComponent implements OnInit {
 
 
   ngOnInit() {
-    this.map = L.map("map").setView([46.879966, -121.726909], 7);
+    this.map = L.map("map").setView([46.879966, -121.726909], 2);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
@@ -68,7 +68,7 @@ export class MapComponent implements OnInit {
 
       for (var i = 0; i < this._locations.length; i++) {
         let marker = L.marker([this._locations[i].lat, this._locations[i].lon])
-          .bindPopup(this._locations[i].name + '</br>' + this._locations[i].temp)
+          .bindPopup(this._locations[i].attractionUser + '</br>' + this._locations[i].temp + '</br>' + this._locations[i].humid + '</br>' + this._locations[i].name)
           .addTo(this.map);
       }
       console.log("added markers to the map")

@@ -19,6 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   <!-- <app-attractions>  </app-attractions> -->
 
 <!-- <app-attractions>  </app-attractions> -->
+<app-navbar></app-navbar>
 
 <div class="container">
 <h3 id='title'>Attractions manager</h3>
@@ -55,7 +56,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
   <tr *ngFor="let obj of locationData">
 
-    <td>{{obj.name}} </td>
+    <td>{{obj.attractionUser}}</td>
     <td>{{obj.lon}}</td>
     <td>{{obj.lat}}</td>    <td ><button>Delete</button></td>
 
@@ -67,14 +68,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 </div>
 
 <app-map [locations] ="locations"></app-map>
-
  `
 })
 
 export class AppComponent implements OnInit {
   locations: Subject<any> = new Subject();
   locationData: any
-  NameUser = '';
+  attractionUser = '';
   longitude = '';
   latitude = '';
 
@@ -114,13 +114,14 @@ ngOnInit() {
   this.dataService.sendGetRequest().subscribe((data: any)=>{
     this.sendDataByObservable(data)
     this.locationData = data
+
     //todo!!!!
    })
   }
 
 
   onKeyName(event: any) { // without type info
-    this.NameUser += event.target.value ;
+    this.attractionUser += event.target.value ;
   }
 
   onKeyLatitude(event: any) { // without type info

@@ -1,0 +1,77 @@
+.sidebar-navigation {
+  display: inline-block;
+  min-height: 100vh;
+  width: 40px;
+  background-color: #CCD6A6;
+
+
+  height: 100%;
+  width: 80px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+ }
+ .sidebar-navigation ul {
+  text-align: center;
+  padding-left: 10px;
+  color: #61876E;  list-style-type: none;
+
+
+ }
+ .sidebar-navigation ul li {
+  padding: 28px 0;
+  cursor: pointer;
+  transition: all ease-out 120ms;
+ }
+ .sidebar-navigation ul li i {
+  display: block;
+  font-size: 24px;
+  transition: all ease 450ms;
+ }
+ .sidebar-navigation ul li .tooltip {
+  display: inline-block;
+  position: absolute;
+  background-color: #313443;
+
+  padding: 8px 15px;
+  border-radius: 3px;
+  margin-top: -26px;
+  left: 90px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+ }
+ .sidebar-navigation ul li .tooltip:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -4px;
+  top: 10px;
+  transform: rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background-color: inherit;
+ }
+ .sidebar-navigation ul li:hover {
+  background-color: #DAE2B6;
+  list-style-type: none;
+
+
+ }
+ .sidebar-navigation ul li:hover .tooltip {
+  visibility: visible;
+  opacity: 2;
+
+
+ }
+
+
+ .sidebar-navigation ul  i {
+  list-style-type: none;
+
+
+ }

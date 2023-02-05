@@ -31,7 +31,12 @@ def get_data():
         data = response.json()
         try:
             temperature = data['main']['temp']
+            humidity = data['main']['humidity']
+            city = data['name']
             obj["temp"] = temperature
+            obj["humid"] = humidity
+            obj["name"] = city
+
         except Exception as e:
             print("can't get weather for", data)
         updatedData.append(obj)
