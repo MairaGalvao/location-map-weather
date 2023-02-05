@@ -191,6 +191,9 @@ body {
     justify-content: center;
     flex-direction: column;
   }
+  #hide-mobile-column {
+    display: none;
+  }
   #title {
     font-size: 25px;
   }

@@ -38,15 +38,19 @@ export class MapComponent implements OnInit {
       for (var i = 0; i < this._locations.length; i++) {
         let marker = L.marker([this._locations[i].lat, this._locations[i].lon])
           .bindPopup(
-            '</br> Location:' +
-              this._locations[i].attractionUser +
-              '</br>Temperature:' +
+            '</br>Attraction: ' +
+              this._locations[i].name +
+              '</br>Temperature: ' +
               this._locations[i].temp +
-              '</br>Humidity:' +
+              '</br>Humidity: ' +
               this._locations[i].humid +
               '</br>City: ' +
-              this._locations[i].name +
-              '</br>'
+              this._locations[i].city +
+              '</br>[Lat, Lon]: [ ' +
+              this._locations[i].lat +
+              ', ' +
+              this._locations[i].lon +
+              ' ] '
           )
           .addTo(this.map);
       }

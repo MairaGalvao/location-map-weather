@@ -55,18 +55,22 @@ import { DomSanitizer } from '@angular/platform-browser';
 
         <table id="customers">
           <tr className="table-attractions">
-            <th>Location</th>
+            <th>Attraction</th>
+            <th id="hide-mobile-column">City</th>
             <th>Longitude</th>
+
             <th>Latitude</th>
             <th>Delete</th>
           </tr>
 
           <tr *ngFor="let obj of locationData">
-            <td>{{ obj.attractionUser }}</td>
+            <td>{{ obj.name }}</td>
+            <td id="hide-mobile-column">{{ obj.city }}</td>
             <td>{{ obj.lon }}</td>
+
             <td>{{ obj.lat }}</td>
             <td>
-              <button id='delete' (click)="deleteAttraction(eachAttraction)">
+              <button id="delete" (click)="deleteAttraction(eachAttraction)">
                 <i class="fas fa-trash-alt delete">Delete</i>
               </button>
             </td>

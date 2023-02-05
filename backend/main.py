@@ -34,7 +34,7 @@ def get_data():
             city = data['name']
             obj["temp"] = temperature
             obj["humid"] = humidity
-            obj["name"] = city
+            obj["city"] = city
 
         except Exception as e:
             print("can't get weather for", data)
