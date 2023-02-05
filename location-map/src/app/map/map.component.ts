@@ -26,7 +26,7 @@ export class MapComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.map = L.map('map').setView([46.879966, -121.726909], 2);
+    this.map = L.map('map').setView([32, 33], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(
       this.map
