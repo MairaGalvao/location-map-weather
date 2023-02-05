@@ -23,7 +23,7 @@ import { DomSanitizer } from '@angular/platform-browser';
         <input
           id="name"
           class="input"
-          placeholder="Location"
+          placeholder="Attraction"
           type="text"
           name="name"
           ngModel
