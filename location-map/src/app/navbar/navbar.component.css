@@ -2,9 +2,7 @@
   display: inline-block;
   min-height: 100vh;
   width: 40px;
-  background-color: #CCD6A6;
-
-
+  background-color: #ccd6a6;
   height: 100%;
   width: 80px;
   position: fixed;
@@ -13,25 +11,24 @@
   left: 0;
   overflow-x: hidden;
   padding-top: 20px;
- }
- .sidebar-navigation ul {
+}
+.sidebar-navigation ul {
   text-align: center;
   padding-left: 10px;
-  color: #61876E;  list-style-type: none;
-
-
- }
- .sidebar-navigation ul li {
+  color: #61876e;
+  list-style-type: none;
+}
+.sidebar-navigation ul li {
   padding: 28px 0;
   cursor: pointer;
   transition: all ease-out 120ms;
- }
- .sidebar-navigation ul li i {
+}
+.sidebar-navigation ul li i {
   display: block;
   font-size: 24px;
   transition: all ease 450ms;
- }
- .sidebar-navigation ul li .tooltip {
+}
+.sidebar-navigation ul li .tooltip {
   display: inline-block;
   position: absolute;
   background-color: #313443;
@@ -44,9 +41,9 @@
   visibility: hidden;
   font-size: 13px;
   letter-spacing: 0.5px;
- }
- .sidebar-navigation ul li .tooltip:before {
-  content: '';
+}
+.sidebar-navigation ul li .tooltip:before {
+  content: "";
   display: block;
   position: absolute;
   left: -4px;
@@ -55,23 +52,21 @@
   width: 10px;
   height: 10px;
   background-color: inherit;
- }
- .sidebar-navigation ul li:hover {
-  background-color: #DAE2B6;
+}
+.sidebar-navigation ul li:hover {
+  background-color: #dae2b6;
   list-style-type: none;
-
-
- }
- .sidebar-navigation ul li:hover .tooltip {
+}
+.sidebar-navigation ul li:hover .tooltip {
   visibility: visible;
   opacity: 2;
+}
 
-
- }
-
-
- .sidebar-navigation ul  i {
+.sidebar-navigation ul i {
   list-style-type: none;
-
-
- }
+}
+@media only screen and (max-width: 600px) {
+  #sideNavBar {
+    display: none;
+  }
+}

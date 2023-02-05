@@ -3,28 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
+  private REST_API_SERVER = 'http://localhost:5000';
 
-  private REST_API_SERVER = "http://localhost:5000";
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  public sendGetRequest(): Observable<any>{
-    console.log("getting locations")
+  public sendGetRequest(): Observable<any> {
     const res = this.httpClient.get(`${this.REST_API_SERVER}/locations`);
-    return res
-
+    return res;
   }
 
-
-
-
-  public sendPostRequest(location:any): any {
-    const headers = { 'content-type': 'application/json'}
-    const body=JSON.stringify(location);
-    console.log(body)
-    this.httpClient.post(this.REST_API_SERVER + 'people', body,{'headers':headers})
+  public sendPostRequest(location: any): any {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(location);
+    this.httpClient.post(this.REST_API_SERVER + 'people', body, {
+      headers: headers,
+    });
   }
 }
