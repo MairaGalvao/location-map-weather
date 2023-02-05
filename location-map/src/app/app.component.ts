@@ -16,16 +16,20 @@ import { DomSanitizer } from '@angular/platform-browser';
 
   template: `
 
-  <!-- <app-map [locations] ="locations"></app-map> -->
   <!-- <app-attractions>  </app-attractions> -->
 
 <!-- <app-attractions>  </app-attractions> -->
 
 <div class="container">
-<form class="form" #attractionsForm="ngForm" (ngSubmit)="onAttractionCreate(attractionsForm.value)">
+<h3 id='title'>Attractions manager</h3>
+
+<form novalidate class="form" #attractionsForm="ngForm" (ngSubmit)="onAttractionCreate(attractionsForm.value)">
 
 
-            <input id="name" class="input" placeholder="name" type="text" name="name" ngModel (keyup.enter)="onKeyName($event)">
+
+
+
+            <input id="name" class="input" placeholder="Location" type="text" name="name" ngModel (keyup.enter)="onKeyName($event)">
 
 
 
@@ -37,43 +41,45 @@ import { DomSanitizer } from '@angular/platform-browser';
             <input type="submit" class="add" value="Add Attraction" />
             </form>
         <div class="tasks">
-        <h3>All attractions</h3>
- <div id="users">
- <div>
+        <h3 id='title-user'>All attractions</h3>
+
+        <table id="customers" >
+  <tr className='table-attractions'>
+    <th>Location</th>
+    <th>Longitude</th>
+    <th>Latitude</th>
+    <th>Delete</th>
+
+  </tr>
 
 
-   Name: <div id='eachAttraction'>
-    <h6>{{NameUser}}</h6>
-   <div class="delete-all">Delete</div>
-   </div>
+  <tr *ngFor="let obj of locationData">
+
+    <td>{{obj.name}} </td>
+    <td>{{obj.lon}}</td>
+    <td>{{obj.lat}}</td>    <td ><button>Delete</button></td>
+
+  </tr>
+
+</table>
+
+
 </div>
-Longitute: <div id='eachAttraction'>
-    <h6>{{longitude}}</h6>
-   <div class="delete-all">Delete</div>
-   </div>
-</div>
 
-
-Latitude: <div id='eachAttraction'>
-    <h6>{{latitude}}</h6>
-   <div class="delete-all">Delete</div>
-   </div>
-</div>
-
-
-</div>
-
+<app-map [locations] ="locations"></app-map>
 
  `
 })
 
 export class AppComponent implements OnInit {
   locations: Subject<any> = new Subject();
+  locationData: any
   NameUser = '';
   longitude = '';
   latitude = '';
 
   checked = false;
+
 
   constructor (private dataService: DataService,
     public http: HttpClient, private _sanitizer: DomSanitizer
@@ -86,17 +92,17 @@ export class AppComponent implements OnInit {
 
 
 
-
 sendDataByObservable(data: any) {
   console.log("sending data", data)
   this.locations.next(data)
 }
 
 onAttractionCreate(attractions:{name:string, lon:number, lat:number}){
-  console.log(attractions)
+  console.log(attractions, 'my atrac')
   this.http.post('http://localhost:5000/post-locations', attractions)
   .subscribe((data) =>{
     console.log(data)
+    return data
   })
   //observable will only send the data if there is a subscriber...in that case, thats why
   //subrscribe is being called straight away
@@ -107,6 +113,8 @@ onAttractionCreate(attractions:{name:string, lon:number, lat:number}){
 ngOnInit() {
   this.dataService.sendGetRequest().subscribe((data: any)=>{
     this.sendDataByObservable(data)
+    this.locationData = data
+    //todo!!!!
    })
   }
 
@@ -115,12 +123,12 @@ ngOnInit() {
     this.NameUser += event.target.value ;
   }
 
-  onKeyLongitude(event: any) { // without type info
-    this.longitude += event.target.value ;
-  }
-
   onKeyLatitude(event: any) { // without type info
     this.latitude += event.target.value ;
+  }
+
+  onKeyLongitude(event: any) { // without type info
+    this.longitude += event.target.value ;
   }
 
 }

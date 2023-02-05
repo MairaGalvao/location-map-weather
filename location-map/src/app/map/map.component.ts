@@ -59,8 +59,7 @@ export class MapComponent implements OnInit {
     this.map = L.map("map").setView([46.879966, -121.726909], 7);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+
     }).addTo(this.map);
 
     this.eventsSubscription = this._locations.subscribe((data: any) => {

@@ -1,9 +1,8 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+body { font-family: 'Inder', sans-serif; line-height: 28px; margin-bottom: 15px; color: #666; }
 .container {
   width: 800px;
-  margin: 20px auto;
+  margin: auto;
+
   height: 1000px;
 }
 .form {
@@ -25,9 +24,10 @@ body {
 }
 .add {
   border: none;
-  background-color: #f44336;
+  background-color: gray;
   color: white;
   padding: 10px;
+  font-weight: bolder;
   border-radius: 6px;
   margin-left: 10px;
   cursor: pointer;
@@ -131,4 +131,63 @@ body {
   display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 6px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #A6BB8D;
+  color: #61876E;
+}
+#title{ color: #3C6255; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px; }
+#title-user{
+   color: #61876E; font-size: 20px; font-family: 'Signika', sans-serif; padding-bottom: 5px;
+}
+
+
+
+@media only screen and (max-width:800px) {
+  /* For tablets: */
+  .container {
+    width: 80%;
+    padding: 0;
+  }
+  .form{
+    background-color: #eee;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #title{
+    font-size: 25px;
+  }
+  .tasks {
+    background-color: #eee;
+    margin-top: 20px;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .add{
+    margin-top: 10px;
+  }
 }
