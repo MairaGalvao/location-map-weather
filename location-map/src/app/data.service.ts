@@ -14,12 +14,4 @@ export class DataService {
     const res = this.httpClient.get(`${this.REST_API_SERVER}/locations`);
     return res;
   }
-
-  public sendPostRequest(location: any): any {
-    const headers = { 'content-type': 'application/json' };
-    const body = JSON.stringify(location);
-    this.httpClient.post(this.REST_API_SERVER + 'people', body, {
-      headers: headers,
-    });
-  }
 }
